@@ -1,0 +1,49 @@
+{
+	"name": "electron-win-state",
+	"version": "0.1.0",
+	"description": "Store and restore your Electron Window Size and Position",
+	"main": "./lib/index.js",
+	"types": "./lib/index.d.ts",
+	"files": [
+		"lib"
+	],
+	"scripts": {
+		"lint": "eslint ./src/ --ext .ts",
+		"watch": "tsc-watch",
+		"build": "tsc -p tsconfig.json"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/BetaHuhn/electron-win-state.git"
+	},
+	"bugs": {
+		"url": "https://github.com/BetaHuhn/electron-win-state/issues"
+	},
+	"homepage": "https://github.com/BetaHuhn/electron-win-state#readme",
+	"author": "Maximilian Schiller <schiller@mxis.ch>",
+	"license": "MIT",
+	"keywords": [
+		"electron",
+		"typescript"
+	],
+	"dependencies": {
+		"debounce": "^1.2.1",
+		"electron": "^12.0.4",
+		"electron-store": "^8.0.0",
+		"type-fest": "^1.2.0"
+	},
+	"devDependencies": {
+		"@betahuhn/config": "^1.1.0",
+		"@types/debounce": "^1.2.0",
+		"@types/node": "^15.12.0",
+		"@typescript-eslint/eslint-plugin": "^4.26.0",
+		"@typescript-eslint/parser": "^4.26.0",
+		"eslint": "^7.27.0",
+		"ts-node": "^9.1.1",
+		"tsc-watch": "^4.4.0",
+		"typescript": "^4.3.2"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
