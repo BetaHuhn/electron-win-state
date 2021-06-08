@@ -30,7 +30,7 @@ The easiest way to use [electron-win-state](https://github.com/BetaHuhn/electron
 import WinState from 'electron-win-state'
 
 const browserWindow = WinState.createBrowserWindow({
-    width: 800,
+	width: 800,
 	height: 600,
 	// your normal BrowserWindow options...
 })
@@ -96,7 +96,7 @@ Or:
 
 ```js
 WinState.createBrowserWindow({
-    width: 800,
+	width: 800,
 	height: 600,
 	winState: {
 		dev: true,
@@ -107,9 +107,8 @@ WinState.createBrowserWindow({
 
 All of these result in the same.
 
-<details><summary>Here are all the options <a href="https://github.com/BetaHuhn/electron-win-state">electron-win-state</a> supports:</summary>
-<br>
-
+Here are all the options [electron-win-state](https://github.com/BetaHuhn/electron-win-state) supports:
+	
 | Name | Type | Description | Default |
 | ------------- | ------------- | ------------- | ------------- |
 | `defaultWidth` | `number` | The default width which will be used when no stored value was found | `800` |
@@ -118,8 +117,6 @@ All of these result in the same.
 | `addReset` | `boolean` | Add a `.resetWindowToDefault()` function to the provided [BrowserWindow](https://www.electronjs.org/docs/api/browser-window) | `true` |
 | `electronStoreOptions` | [`object`](https://github.com/sindresorhus/electron-store#options) | Will be passed to the underlying [electron-store](https://github.com/sindresorhus/electron-store) instance | `{ name: 'window-state' }` |
 | `store` | [`instance`](https://github.com/sindresorhus/electron-store#instance) | An existing [electron-store](https://github.com/sindresorhus/electron-store) instance to use | n/a |
-
-</details>
 
 ## 📖 Examples
 
@@ -133,7 +130,7 @@ This is the most basic example. A new [BrowserWindow](https://www.electronjs.org
 import WinState from 'electron-win-state'
 
 const browserWindow = WinState.createBrowserWindow({
-    width: 800,
+	width: 800,
 	height: 600
 })
 
@@ -150,7 +147,7 @@ During development it might be helpful to store the window size and position imm
 import WinState from 'electron-win-state'
 
 const browserWindow = WinState.createBrowserWindow({
-    width: 800,
+	width: 800,
 	height: 600,
 	winState: {
 		dev: true
@@ -168,7 +165,7 @@ If `addReset` is enabled (it is by default) a `.resetWindowToDefault()` method w
 import WinState from 'electron-win-state'
 
 const browserWindow = WinState.createBrowserWindow({
-    width: 800,
+	width: 800,
 	height: 600,
 	winState: {
 		dev: true
