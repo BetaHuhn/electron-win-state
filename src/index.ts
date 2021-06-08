@@ -161,7 +161,7 @@ export default class WinState<T> {
 	 */
 	static createBrowserWindow(options: CreateBrowserWindowOptions<any>): BrowserWindow {
 		// Parse winState specific options from options
-		const winStateOpts = Object.assign({}, { defaultWidth: options.width, defaultHeight: options.width }, options.winState)
+		const winStateOpts = Object.assign({}, { defaultWidth: options.width, defaultHeight: options.height }, options.winState)
 
 		const winState = new WinState(winStateOpts)
 
