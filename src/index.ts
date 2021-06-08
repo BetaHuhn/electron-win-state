@@ -4,6 +4,25 @@ import { BrowserWindow } from 'electron'
 
 import { Options, FinalOptions, State, CreateBrowserWindowOptions } from './types'
 
+/**
+ * Store and restore your Electron Window's Size and Position.
+ * @example
+	```
+	const winState = new WinState({ 
+		defaultWidth: 800,
+		defaultHeight: 600,
+		// other winState options, see below
+	})
+
+	const browserWindow = new BrowserWindow({
+		...winState.winOptions,
+		// your normal BrowserWindow options...
+	})
+
+	// Attach the required event listeners
+	winState.manage(this.browserWindow)
+	```
+ */
 export default class WinState<T> {
 
 	opts: FinalOptions<T>
@@ -40,10 +59,22 @@ export default class WinState<T> {
 		this.store.set(this.state as any)
 	}
 
+	/**
+	 * Reset the stored window size and position
+	 */
 	reset() {
 		this.store.clear()
 	}
 
+	/**
+	 * Attach event listeners to the BrowserWindow.
+	 * 
+	 * Will listen to the `resize`, `move`, `close` and `closed event`.
+	 * 
+	 * By default the changes will only be stored on the `close` and `closed` event.
+	 * Use the `dev` option to store the changes on `resize` and `move` as well.
+	 * @param win 
+	 */
 	manage(win: BrowserWindow) {
 		this.win = win
 
@@ -61,6 +92,9 @@ export default class WinState<T> {
 		}
 	}
 
+	/**
+	 * Remove all attached event listeners
+	 */
 	unmanage() {
 		if (this.win) {
 			this.win.removeListener('resize', debounce(() => this.changeHandler(), this.opts.debounce))
@@ -108,6 +142,23 @@ export default class WinState<T> {
 		return !this.win?.isMaximized() && !this.win?.isMinimized() && !this.win?.isFullScreen()
 	}
 
+	/**
+	 * Create a new [BrowserWindow](https://www.electronjs.org/docs/api/browser-window) with the restored window size and position.
+	 * 
+	 * Will attach the event listeners automatically.
+	 * @param options Options for the new BrowserWindow as well as [electron-win-state](https://github.com/BetaHuhn/electron-win-state) itself.
+	 * @returns A new BrowserWindow
+	 * @example
+		```
+		import WinState from 'electron-win-state'
+
+		const browserWindow = WinState.createBrowserWindow({
+			width: 800,
+			height: 600,
+			// your normal BrowserWindow options...
+		})
+		```
+	 */
 	static createBrowserWindow(options: CreateBrowserWindowOptions<any>): BrowserWindow {
 		// Parse winState specific options from options
 		const winStateOpts = Object.assign({}, { defaultWidth: options.width, defaultHeight: options.width }, options.winState)
@@ -125,6 +176,9 @@ export default class WinState<T> {
 		return win
 	}
 
+	/**
+	 * The current window size and position
+	 */
 	get winOptions() {
 		return {
 			width: this.width,
@@ -134,18 +188,30 @@ export default class WinState<T> {
 		}
 	}
 
-	get height() {
-		return this.state.height
-	}
-
+	/**
+	 * The current window width
+	 */
 	get width() {
 		return this.state.width
 	}
 
+	/**
+	 * The current window height
+	 */
+	 get height() {
+		return this.state.height
+	}
+
+	/**
+	 * The current window x position
+	 */
 	get x() {
 		return this.state.x
 	}
 
+	/**
+	 * The current window y position
+	 */
 	get y() {
 		return this.state.y
 	}
