@@ -22,7 +22,7 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **⚙️ Environment**
-- Library Version [e.g. v0.6.0]
+- Library Version [e.g. v1.0.0]
 - Electron Version: [e.g. v12]
 - OS: [e.g. Ubuntu 18.04]
 
