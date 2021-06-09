@@ -27,10 +27,17 @@ export default class WinState<T> {
     win?: BrowserWindow;
     constructor(options: Options<T>);
     getState(): {
+        frame?: boolean | undefined;
         width: number;
         height: number;
     } & Record<string, unknown>;
     saveState(): void;
+    /**
+     * Change the stored frame option
+     *
+     * Note: You need to recreate the window for this to take effect
+     */
+    changeFrame(value: boolean): void;
     /**
      * Reset the stored window size and position
      */
@@ -74,10 +81,11 @@ export default class WinState<T> {
      * The current window size and position
      */
     get winOptions(): {
-        width: number;
-        height: number;
         x: number | undefined;
         y: number | undefined;
+        frame?: boolean | undefined;
+        width: number;
+        height: number;
     };
     /**
      * The current window width
@@ -87,6 +95,10 @@ export default class WinState<T> {
      * The current window height
      */
     get height(): number;
+    /**
+     * If the window has a frame
+     */
+    get frame(): boolean | undefined;
     /**
      * The current window x position
      */

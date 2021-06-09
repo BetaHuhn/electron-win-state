@@ -18,26 +18,39 @@ export interface Options<T> {
      */
     defaultHeight?: number;
     /**
-     * Enable development mode.
+     * Default value for the [frame](https://www.electronjs.org/docs/api/frameless-window#frameless-window) option
      *
-     * Changes will be stored immediately after resizing or moving and not just after closing a window
+     * @default true
+     */
+    defaultFrame?: boolean;
+    /**
+     * Store and restore the [frame](https://www.electronjs.org/docs/api/frameless-window#frameless-window) option
+     *
+     * Will be enabled automatically if `defaultFrame` is provided.
+     * @default false
+     */
+    storeFrameOption?: boolean;
+    /**
+     * Enable development mode
+     *
+     * Changes will be stored immediately after resizing or moving and not just after closing a window.
      *
      * @default false
      */
     dev?: boolean;
     /**
-     * Add the `.resetWindowToDefault()` method to the provided [BrowserWindow](https://www.electronjs.org/docs/api/browser-window).
+     * Add the `.resetWindowToDefault()`, `.setFramed()` and `.getStoredWinOptions()` methods to the provided [BrowserWindow](https://www.electronjs.org/docs/api/browser-window)
      *
      * Can be used to both reset the stored state, as well as resizing the window to it's defaults.
      *
      * @default true
      */
-    addReset?: boolean;
+    addMethods?: boolean;
     debounce?: number;
     electronStoreOptions?: electronStoreOptions<T>;
     store?: Store;
 }
-export declare type FinalOptions<T> = SetRequired<Options<T>, 'defaultWidth' | 'defaultHeight' | 'dev' | 'debounce' | 'addReset' | 'electronStoreOptions'>;
+export declare type FinalOptions<T> = SetRequired<Options<T>, 'defaultWidth' | 'defaultHeight' | 'defaultFrame' | 'storeFrameOption' | 'dev' | 'debounce' | 'addMethods' | 'electronStoreOptions'>;
 export interface CreateBrowserWindowOptions<T> extends BrowserWindowConstructorOptions {
     /**
      * Default width which will be used when no stored value was found
@@ -65,6 +78,10 @@ export interface State {
      * The current window height
      */
     height: number;
+    /**
+     * If the window has a frame
+     */
+    frame?: boolean;
     /**
      * The current window x position
      */

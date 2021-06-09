@@ -34,12 +34,14 @@ export default class WinState<T> {
 		const defaultOptions = {
 			defaultWidth: 600,
 			defaultHeight: 800,
+			defaultFrame: true,
+			storeFrameOption: options.defaultFrame !== undefined || false,
 			dev: false,
 			debounce: 500,
 			electronStoreOptions: { 
 				name: 'window-state'
 			},
-			addReset: true,
+			addMethods: true,
 			store: undefined
 		}
 
@@ -50,13 +52,24 @@ export default class WinState<T> {
 
 	getState() {
 		const stored = this.store.store
-		const defaults = { width: this.opts.defaultWidth, height: this.opts.defaultHeight }
+		const defaults = { width: this.opts.defaultWidth, height: this.opts.defaultHeight, ...(this.opts.storeFrameOption && { frame: this.opts.defaultFrame }) }
 
 		return Object.assign({}, defaults, stored)
 	}
 
 	saveState() {
 		this.store.set(this.state as any)
+	}
+
+	/**
+	 * Change the stored frame option
+	 * 
+	 * Note: You need to recreate the window for this to take effect
+	 */
+	changeFrame(value: boolean) {
+		this.state.frame = value
+
+		this.saveState()
 	}
 
 	/**
@@ -84,10 +97,18 @@ export default class WinState<T> {
 		this.win.on('closed', () => this.closeHandler())
 
 		// Add a reset method to the window
-		if (this.opts.addReset) {
+		if (this.opts.addMethods) {
 			(this.win as any).resetWindowToDefault = () => {
 				this.win?.setSize(this.opts.defaultWidth, this.opts.defaultHeight)
 				this.reset()
+			}
+
+			(this.win as any).setFramed = (value: boolean) => {
+				this.changeFrame(value)
+			}
+
+			(this.win as any).getStoredWinOptions = () => {
+				return this.winOptions
 			}
 		}
 	}
@@ -121,8 +142,6 @@ export default class WinState<T> {
 			// Not working, reference: https://git.io/JZ3n5
 			/* this.state.isMaximized = this.win.isMaximized()
 			this.state.isFullScreen = this.win.isFullScreen() */
-
-			// this.state.displayBounds = screen.getDisplayMatching(winBounds).bounds
 
 			if (this.opts.dev) {
 				this.saveState()
@@ -160,8 +179,16 @@ export default class WinState<T> {
 		```
 	 */
 	static createBrowserWindow(options: CreateBrowserWindowOptions<any>): BrowserWindow {
+		// If storeFrameOption is missing and the defaultFrame property exists enable storeFrameOption
+		if (options.winState?.storeFrameOption === undefined) {
+			options.winState = {
+				...options.winState,
+				storeFrameOption: options.winState?.defaultFrame !== undefined
+			}
+		}
+
 		// Parse winState specific options from options
-		const winStateOpts = Object.assign({}, { defaultWidth: options.width, defaultHeight: options.height }, options.winState)
+		const winStateOpts = Object.assign({}, { defaultWidth: options.width, defaultHeight: options.height, ...(options.winState?.storeFrameOption && { defaultFrame: options.frame }) }, options.winState)
 
 		const winState = new WinState(winStateOpts)
 
@@ -183,6 +210,7 @@ export default class WinState<T> {
 		return {
 			width: this.width,
 			height: this.height,
+			...(this.opts.storeFrameOption && { frame: this.frame }),
 			x: this.x,
 			y: this.y
 		}
@@ -198,8 +226,15 @@ export default class WinState<T> {
 	/**
 	 * The current window height
 	 */
-	 get height() {
+	get height() {
 		return this.state.height
+	}
+
+	/**
+	 * If the window has a frame
+	 */
+	 get frame() {
+		return this.state.frame
 	}
 
 	/**

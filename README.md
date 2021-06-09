@@ -13,6 +13,7 @@ Store and restore your Electron Window's Size and Position.
 - 💾 **Persistent** - *persistently stores your Electron Window's size and position*
 - 🔌 **Easy integration** - *integrates easily with your existing BrowserWindow configuration*
 - 🔨 **Customization** - *customize the behaviour and the underlying [electron-store](https://github.com/sindresorhus/electron-store) instance*
+- 🖼️ **Frame option** - *you can [optionally](storing-the-frame-option) store the [frame](https://www.electronjs.org/docs/api/frameless-window#frameless-window) option as well*
 
 ## 🚀 Get started
 
@@ -63,7 +64,7 @@ winState.manage(this.browserWindow)
 With `winState.winOptions` you have access to the restored size and position of the window: 
 
 ```js
-console.log(winState.winOptions) // => { width: 800, height: 600, x: 0, y: 0 }
+console.log(winState.winOptions) // => { width: 800, height: 600, x: 0, y: 0, frame: true }
 ```
 
 ## ⚙️ Options
@@ -75,7 +76,7 @@ new WinState({
 	defaultWidth: 800,
 	defaultHeight: 600,
 	dev: true,
-	addReset: true
+	addMethods: true
 })
 ```
 
@@ -87,7 +88,7 @@ WinState.createBrowserWindow({
 		defaultWidth: 800,
 		defaultHeight: 600,
 		dev: true,
-		addReset: true
+		addMethods: true
 	}
 })
 ```
@@ -100,7 +101,7 @@ WinState.createBrowserWindow({
 	height: 600,
 	winState: {
 		dev: true,
-		addReset: true
+		addMethods: true
 	}
 })
 ```
@@ -113,8 +114,10 @@ Here are all the options [electron-win-state](https://github.com/BetaHuhn/electr
 | ------------- | ------------- | ------------- | ------------- |
 | `defaultWidth` | `number` | The default width which will be used when no stored value was found | `800` |
 | `defaultHeight` | `number` | The default height which will be used when no stored value was found | `600` |
+| `defaultFrame` | `boolean` | The default value for the [frame](https://www.electronjs.org/docs/api/frameless-window#frameless-window) option when no stored value was found | `true` |
+| `storeFrameOption` | `boolean` | Store and restore the [frame](https://www.electronjs.org/docs/api/frameless-window#frameless-window) option (will be enabled automatically if `defaultFrame` is provided) | `false` |
 | `dev` | `boolean` | Enable development mode. Changes will be stored immediately after resizing or moving and not just after closing a window | `false` |
-| `addReset` | `boolean` | Add a `.resetWindowToDefault()` function to the provided [BrowserWindow](https://www.electronjs.org/docs/api/browser-window) | `true` |
+| `addMethods` | `boolean` | Add the `.resetWindowToDefault()`, `.setFramed()` and `.getStoredWinOptions()` methods to the provided [BrowserWindow](https://www.electronjs.org/docs/api/browser-window) | `true` |
 | `electronStoreOptions` | [`object`](https://github.com/sindresorhus/electron-store#options) | Will be passed to the underlying [electron-store](https://github.com/sindresorhus/electron-store) instance | `{ name: 'window-state' }` |
 | `store` | [`instance`](https://github.com/sindresorhus/electron-store#instance) | An existing [electron-store](https://github.com/sindresorhus/electron-store) instance to use | n/a |
 
@@ -159,7 +162,7 @@ browserWindow.loadURL('https://github.com/BetaHuhn/electron-win-state')
 
 ### Resetting the Window
 
-If `addReset` is enabled (it is by default) a `.resetWindowToDefault()` method will be added to the provided [BrowserWindow](https://www.electronjs.org/docs/api/browser-window) and can be used to both reset the stored state, as well as resizing the window to it's defaults:
+If `addMethods` is enabled (it is by default) a `.resetWindowToDefault()` method will be added to the provided [BrowserWindow](https://www.electronjs.org/docs/api/browser-window) and can be used to both reset the stored state, as well as resizing the window to it's defaults:
 
 ```js
 import WinState from 'electron-win-state'
@@ -181,6 +184,71 @@ This method could also be accessed anywhere else in your Electron app by getting
 ```js
 const browserWindow = BrowserWindow.getFocusedWindow()
 browserWindow.resetWindowToDefault()
+```
+
+---
+
+### Storing the frame option
+
+You can optionally store the [frame](https://www.electronjs.org/docs/api/frameless-window#frameless-window) option as well. This might be useful if you want your users to enable or disable the window frame and store their choice.
+
+If `storeFrameOption` is enabled (or `defaultFrame` is provided) the `frame` or `defaultFrame` option will be stored and can be later changed with the `.setFramed()` method on the provided [BrowserWindow](https://www.electronjs.org/docs/api/browser-window) (will be added if `addMethods` is true).
+
+> You have to recreate the window for the `frame` option to take effect
+
+```js
+import WinState from 'electron-win-state'
+
+const browserWindow = WinState.createBrowserWindow({
+	width: 800,
+	height: 600,
+	frame: false,
+	winState: {
+		storeFrameOption: true
+	}
+})
+
+// Later
+browserWindow.setFramed(true)
+```
+
+This method could also be accessed anywhere else in your Electron app by getting the currently focused window:
+
+```js
+const browserWindow = BrowserWindow.getFocusedWindow()
+browserWindow.setFramed(true)
+```
+
+---
+
+### Get stored values
+
+You can access the restored window size and position with the `winOptions` object:
+
+```js
+const winState = new WinState({ 
+	defaultWidth: 800,
+	defaultHeight: 600,
+	defaultFrame: false
+})
+
+winState.winOptions // => { width: 1200, height: 700, x: 50, y: 105, frame: true }
+```
+
+You can get the stored values at any time using the added `.getStoredWinOptions()` method on the [BrowserWindow](https://www.electronjs.org/docs/api/browser-window) (only added if `addMethods` is true):
+
+```js
+import WinState from 'electron-win-state'
+
+const browserWindow = WinState.createBrowserWindow({
+	winState: {
+		defaultWidth: 800,
+		defaultHeight: 600,
+		defaultFrame: false
+	}
+})
+
+browserWindow.getStoredWinOptions() // => { width: 1200, height: 700, x: 50, y: 105, frame: true }
 ```
 
 ---
