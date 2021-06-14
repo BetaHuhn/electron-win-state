@@ -1,6 +1,6 @@
 {
 	"name": "electron-win-state",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "Store and restore your Electron Window Size and Position",
 	"main": "./lib/index.js",
 	"types": "./lib/index.d.ts",
