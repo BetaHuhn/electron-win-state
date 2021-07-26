@@ -1,3 +1,13 @@
+## [v1.1.7] - 2021-07-26
+
+[Release notes](https://github.com/BetaHuhn/electron-win-state/releases/tag/v1.1.7) · [Compare](https://github.com/BetaHuhn/electron-win-state/compare/v1.1.6...v1.1.7) · [Tag](https://github.com/BetaHuhn/electron-win-state/tree/v1.1.7) · Archive ([zip](https://github.com/BetaHuhn/electron-win-state/archive/v1.1.7.zip) · [tar.gz](https://github.com/BetaHuhn/electron-win-state/archive/v1.1.7.tar.gz))
+
+### Dependency updates
+
+- [`41933d7`](https://github.com/BetaHuhn/electron-win-state/commit/41933d7)  Bump eslint from 7.30.0 to 7.31.0
+- [`5073e99`](https://github.com/BetaHuhn/electron-win-state/commit/5073e99)  Bump @typescript-eslint/eslint-plugin from 4.28.3 to 4.28.4
+- [`d5e8961`](https://github.com/BetaHuhn/electron-win-state/commit/d5e8961)  Bump @typescript-eslint/parser from 4.28.3 to 4.28.4
+
 ## [v1.1.6] - 2021-07-19
 
 [Release notes](https://github.com/BetaHuhn/electron-win-state/releases/tag/v1.1.6) · [Compare](https://github.com/BetaHuhn/electron-win-state/compare/v1.1.5...v1.1.6) · [Tag](https://github.com/BetaHuhn/electron-win-state/tree/v1.1.6) · Archive ([zip](https://github.com/BetaHuhn/electron-win-state/archive/v1.1.6.zip) · [tar.gz](https://github.com/BetaHuhn/electron-win-state/archive/v1.1.6.tar.gz))
