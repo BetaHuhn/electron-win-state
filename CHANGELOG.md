@@ -1,3 +1,14 @@
+## [v1.1.15] - 2021-09-20
+
+[Release notes](https://github.com/BetaHuhn/electron-win-state/releases/tag/v1.1.15) · [Compare](https://github.com/BetaHuhn/electron-win-state/compare/v1.1.14...v1.1.15) · [Tag](https://github.com/BetaHuhn/electron-win-state/tree/v1.1.15) · Archive ([zip](https://github.com/BetaHuhn/electron-win-state/archive/v1.1.15.zip) · [tar.gz](https://github.com/BetaHuhn/electron-win-state/archive/v1.1.15.tar.gz))
+
+### Dependency updates
+
+- [`0689c40`](https://github.com/BetaHuhn/electron-win-state/commit/0689c40)  Bump typescript from 4.4.2 to 4.4.3
+- [`f0c4a21`](https://github.com/BetaHuhn/electron-win-state/commit/f0c4a21)  Bump @typescript-eslint/eslint-plugin from 4.31.0 to 4.31.1
+- [`25c4ab1`](https://github.com/BetaHuhn/electron-win-state/commit/25c4ab1)  Bump @typescript-eslint/parser from 4.31.0 to 4.31.1
+- [`a3db3ce`](https://github.com/BetaHuhn/electron-win-state/commit/a3db3ce)  Bump electron-store from 8.0.0 to 8.0.1
+
 ## [v1.1.14] - 2021-09-13
 
 [Release notes](https://github.com/BetaHuhn/electron-win-state/releases/tag/v1.1.14) · [Compare](https://github.com/BetaHuhn/electron-win-state/compare/v1.1.13...v1.1.14) · [Tag](https://github.com/BetaHuhn/electron-win-state/tree/v1.1.14) · Archive ([zip](https://github.com/BetaHuhn/electron-win-state/archive/v1.1.14.zip) · [tar.gz](https://github.com/BetaHuhn/electron-win-state/archive/v1.1.14.tar.gz))
