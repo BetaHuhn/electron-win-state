@@ -1,3 +1,11 @@
+## [v1.1.19] - 2021-10-18
+
+[Release notes](https://github.com/BetaHuhn/electron-win-state/releases/tag/v1.1.19) · [Compare](https://github.com/BetaHuhn/electron-win-state/compare/v1.1.18...v1.1.19) · [Tag](https://github.com/BetaHuhn/electron-win-state/tree/v1.1.19) · Archive ([zip](https://github.com/BetaHuhn/electron-win-state/archive/v1.1.19.zip) · [tar.gz](https://github.com/BetaHuhn/electron-win-state/archive/v1.1.19.tar.gz))
+
+### Dependency updates
+
+- [`90fcbec`](https://github.com/BetaHuhn/electron-win-state/commit/90fcbec)  Bump typescript from 4.4.3 to 4.4.4
+
 ## [v1.1.18] - 2021-10-11
 
 [Release notes](https://github.com/BetaHuhn/electron-win-state/releases/tag/v1.1.18) · [Compare](https://github.com/BetaHuhn/electron-win-state/compare/v1.1.17...v1.1.18) · [Tag](https://github.com/BetaHuhn/electron-win-state/tree/v1.1.18) · Archive ([zip](https://github.com/BetaHuhn/electron-win-state/archive/v1.1.18.zip) · [tar.gz](https://github.com/BetaHuhn/electron-win-state/archive/v1.1.18.tar.gz))
