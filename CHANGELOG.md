@@ -1,3 +1,11 @@
+## [v1.1.21] - 2021-10-25
+
+[Release notes](https://github.com/BetaHuhn/electron-win-state/releases/tag/v1.1.21) · [Compare](https://github.com/BetaHuhn/electron-win-state/compare/v1.1.20...v1.1.21) · [Tag](https://github.com/BetaHuhn/electron-win-state/tree/v1.1.21) · Archive ([zip](https://github.com/BetaHuhn/electron-win-state/archive/v1.1.21.zip) · [tar.gz](https://github.com/BetaHuhn/electron-win-state/archive/v1.1.21.tar.gz))
+
+### Dependency updates
+
+- [`b41ccd9`](https://github.com/BetaHuhn/electron-win-state/commit/b41ccd9)  Bump electron from 12.0.10 to 12.1.0
+
 ## [v1.1.20] - 2021-10-23
 
 [Release notes](https://github.com/BetaHuhn/electron-win-state/releases/tag/v1.1.20) · [Compare](https://github.com/BetaHuhn/electron-win-state/compare/v1.1.19...v1.1.20) · [Tag](https://github.com/BetaHuhn/electron-win-state/tree/v1.1.20) · Archive ([zip](https://github.com/BetaHuhn/electron-win-state/archive/v1.1.20.zip) · [tar.gz](https://github.com/BetaHuhn/electron-win-state/archive/v1.1.20.tar.gz))
