@@ -37,7 +37,7 @@
 		"@types/node": "^15.12.2",
 		"@typescript-eslint/eslint-plugin": "^4.26.1",
 		"@typescript-eslint/parser": "^4.26.1",
-		"electron": "^15.3.0",
+		"electron": "^17.1.1",
 		"eslint": "^7.27.0",
 		"ts-node": "^9.1.1",
 		"tsc-watch": "^4.4.0",
