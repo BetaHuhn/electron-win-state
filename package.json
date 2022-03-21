@@ -29,7 +29,7 @@
 	"dependencies": {
 		"debounce": "^1.2.1",
 		"electron-store": "^8.0.0",
-		"type-fest": "^1.2.0"
+		"type-fest": "^2.12.1"
 	},
 	"devDependencies": {
 		"@betahuhn/config": "^1.1.0",
