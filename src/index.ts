@@ -91,6 +91,7 @@ export default class WinState<T> {
 	manage(win: BrowserWindow) {
 		this.win = win
 
+		this.win.on('maximize', debounce(() => this.changeHandler(), this.opts.debounce))
 		this.win.on('resize', debounce(() => this.changeHandler(), this.opts.debounce))
 		this.win.on('move', debounce(() => this.changeHandler(), this.opts.debounce))
 		this.win.on('close', () => this.closeHandler())
@@ -133,8 +134,8 @@ export default class WinState<T> {
 			const winBounds = this.win.getBounds()
 
 			if (this.isNormal()) {
-				this.state.x = winBounds.x
-				this.state.y = winBounds.y
+				this.state.x = winBounds.x >= 0 ? winBounds.x : 0
+				this.state.y = winBounds.y >= 0 ? winBounds.y : 0
 				this.state.width = winBounds.width
 				this.state.height = winBounds.height
 			}
@@ -158,7 +159,7 @@ export default class WinState<T> {
 	}
 
 	isNormal() {
-		return !this.win?.isMaximized() && !this.win?.isMinimized() && !this.win?.isFullScreen()
+		return !this.win?.isMinimized() && !this.win?.isFullScreen()
 	}
 
 	/**
